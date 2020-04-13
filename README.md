@@ -1,2 +1,10 @@
 # MondaySinchon
-Sinchon Algorithm Study Group src repository
+신촌 알고리즘 스터디 소스코드 저장소입니다.
+
+### 👨‍👩‍👧‍👦참여자
+
+박미지
+정다희
+김지수
+임동준
+
