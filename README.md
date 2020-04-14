@@ -3,10 +3,10 @@
 
 ### 👨‍👩‍👧‍👦참여자
 
-박미지<br>
-정다희<br>
-김지수<br>
-임동준<br>
+박미지 [(mijip0320)](https://github.com/mijip0320)<br>
+정다희 [(Jungdahee)](https://github.com/Jungdahee)<br>
+김지수 [(jisus189)](https://github.com/jisus189)<br>
+임동준 [(dongjunLim)](https://github.com/DongjunLim)<br>
 <br>
 ### 스터디 룰
 
