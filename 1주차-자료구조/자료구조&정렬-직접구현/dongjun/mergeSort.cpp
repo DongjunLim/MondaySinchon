@@ -4,24 +4,24 @@
  성능비교
  
  input: 100
- 라이브러리: 0.004ms
- 내가 짠 코드: 0.005ms
+ 라이브러리: 0.005ms
+ 내가 짠 코드: 0.01ms
 
  input: 999
- 라이브러리: 0.02ms
- 내가 짠 코드: 0.05ms
+ 라이브러리: 0.033ms
+ 내가 짠 코드: 0.116ms
 
  input: 10000
- 라이브러리: 0.202ms
- 내가 짠 코드: 0.551ms
+ 라이브러리: 0.213ms
+ 내가 짠 코드: 1.156ms
 
  input: 100000
- 라이브러리: 1.913ms
- 내가 짠 코드: 5.783ms
+ 라이브러리: 2.264ms
+ 내가 짠 코드: 14.177ms
 
  input: 1000000
- 라이브러리: 19.626ms
- 내가 짠 코드: 63.881ms
+ 라이브러리: 19.635ms
+ 내가 짠 코드: 132.607ms
  
 -------------------------------------------------------------*/
 
@@ -34,46 +34,58 @@
 using namespace std;
 
 
-int quickSort(char* arr,int left,int right){
+//결합 알고리즘
+int combine(char* arr, int start, int mid, int end){
     
-    //왼쪽 인덱스가 오른쪽 인덱스보다 크거나 같으면 탈출
-    if(left >= right)
-        return 1;
+    //임시저장 배열 선언
+    char tempArr[MAX];
     
-    //기준점 피봇값 설정
-    int pivot = arr[right];
+    //배열인덱스 위치를 저장할 변수 선언
+    int i=start,j=mid, k=0;
     
-    //왼쪽, 오른쪽 인덱스 최초 설정
-    int i = left;
-    int j = right;
+    //mid를 기준으로 좌우배열은 무조건 정렬된 상태이다.
+    //mid를 기준으로 왼쪽 부분배열과 오른쪽 부분배열을 합친다.
+    //인덱스 순회가 좌우배열 중 한쪽만 끝나도 반복문 종료
+    while(i < mid && j <= end){
+        if(arr[i] < arr[j])
+            tempArr[k++] = arr[i++];
+        else
+            tempArr[k++] = arr[j++];
+    }
     
-    char temp;
+    //인덱스 순회가 덜 끝난 배열이 있으면 나머지를 임시배열에 채운다.
+    while(i < mid) tempArr[k++] = arr[i++];
+    while(j <= end) tempArr[k++] = arr[j++];
     
-    //피봇값을 기준으로 정렬수행
-    do{
-        //왼쪽에서 오른쪽으로 이동하며 피봇값보다 큰 값을 찾음
-        while(arr[i] < pivot)  i++;
-        //오른쪽에서 왼쪽으로 이동하며 피봇값보다 큰 값을 찾음
-        while(arr[j] > pivot)  j--;
-        
-        //왼쪽 인덱스가 오른쪽 인덱스보다 커지지 않은 상태면 값을 서로 바꿈
-        if(i <= j){
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            i++;
-            j--;
-        }
-     //i가 j보다 커지면 반복문 종료
-    }while(i <= j);
+    //여기를 기점으로 임시배열에 정렬 완료.
     
-    //반복문 종료 시점에서 i는 j보다 크다.
-    //j를 포함하여 j보다 낮은 인덱스들의 값은 피봇값보다 작다. (분할성공)
-    //i를 포함하여 i보다 높은 인덱스들의 값은 피보값보다 크다. (분할성공)
-    
-    //분할한 구간에서 다시 퀵정렬을 수행한다.
-    return quickSort(arr, left, j) + quickSort(arr, i, right);
+    //정렬된 임시배열을 원래배열에 옮긴다.
+    for(int i=0; i<=(end-start); i++){
+        arr[start+i] = tempArr[i];
+    }
+    return 1;
 }
+
+//합병정렬 알고리즘
+int mergeSort(char* arr,int left,int right){
+    //왼족과 오른쪽이 같다는건 분할할게 없다는 의미므로 함수 종료
+    if (left >= right)  return 1;
+    
+    //배열범위 분할을 위해 중간위치 인덱스 mid 변수 선언
+    int mid = ((left + right)/2);
+    
+    //재귀호출로 정렬할 배열 범위 분할
+    mergeSort(arr,left,mid);
+    mergeSort(arr, mid+1, right);
+    
+    //분할한 배열 결합
+    combine(arr,left,mid+1,right);
+    
+    return 1;
+}
+
+
+
 
 
 int main(int argv, char* argc[]){
@@ -117,7 +129,7 @@ int main(int argv, char* argc[]){
         
         //직접짠 정렬함수 호출, 정렬알고리즘 앞뒤로 시간측정
         start = clock();
-        quickSort(mySortArr,left,right);
+        mergeSort(mySortArr,left,right-1);
         end = clock();
         
         //측정한 시간 밀리세컨드로 변환
@@ -127,7 +139,9 @@ int main(int argv, char* argc[]){
         cout << "input: " << right << endl;
         cout << "라이브러리: " << libSortTime << "ms" << endl;
         cout << "내가 짠 코드: " << mySortTime << "ms" << endl << endl;
+
     }
+
 
     return 0;
 }
