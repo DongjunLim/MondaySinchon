@@ -1,7 +1,7 @@
 import sys
 
 # 비밀번호에 모음 1개, 자음 2개인지 확인하기 위한 모음배열
-consonant = ['a','e','u','i','o']
+vowel = ['a','e','u','i','o']
 
 answer = []
 
@@ -38,17 +38,17 @@ def find(idx, string):
 
 # 비밀번호 조건에 부합하는지 확인하는 함수
 def checkCondition(string):
-    global consonant
-    isConsonant = False
-    isVowel = 0
+    global vowel
+    isVowel = False
+    isConsonant = 0
 
     for i,x in enumerate(string):
-        if x in consonant:
-            isConsonant = True
+        if x in vowel:
+            isVowel = True
         else:
-            isVowel += 1
+            isConsonant += 1
 
-    if isConsonant and isVowel > 1:
+    if isVowel and isConsonant > 1:
         return True
     return False
 
