@@ -59,6 +59,8 @@ int main(){
     for(int i=1; i<= N; i++){
         for(int j=1; j<= N; j++){
             cin >> normalArr[i][j];
+            
+            // 적록색약 맵은 G를 R로 바꿔 입력한다.
             if(normalArr[i][j] == 'G'){
                 colorBlindArr[i][j] = 'R';
             } else{
@@ -67,24 +69,31 @@ int main(){
         }
     }
     
-    
+    // 배열을 순회하며 일반인 영역탐색
     for(int i=1; i<=N; i++){
         for(int j=1; j<=N; j++){
+            // 탐색이 안되어있으면 연결영역 전체 탐색
             if(!normal[i][j]){
                 dfs(normalArr,normal,i,j);
+                // 영역 카운트 증가
                 normalCnt++;
             }
         }
     }
     
+    // 배열을 순회하며 적록색약 영역탐색
     for(int i=1; i<=N; i++){
         for(int j=1; j<=N; j++){
+            // 탐색이 안되어있으면 연결영역 전체 탐색
             if(!colorBlind[i][j]){
                 dfs(colorBlindArr,colorBlind,i,j);
+                // 영역 카운트 증가
                 colorBlindCnt++;
             }
         }
     }
+    
+    // 결과 출력
     cout << normalCnt << " " << colorBlindCnt;
     
     return 0;
