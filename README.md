@@ -7,7 +7,7 @@
 - 정다희 [(Jungdahee)](https://github.com/Jungdahee)<br>
 - ~~김지수 [(jisus189)](https://github.com/jisus189)~~<br>
 - 임동준 [(dongjunLim)](https://github.com/DongjunLim)<br>
-- 강민성<br>
+- 강민성 [(kms0524)](https://github.com/kms0524)<br>
 
 
 ### 스터디 룰
