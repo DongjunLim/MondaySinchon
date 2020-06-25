@@ -45,7 +45,7 @@ int unionSet(int u, int v){
 long long kruskal(int m){
     int sz = int(edgeList.size());
     long long cost = 0; // 최소비용의 누적합
-    int edgeCount = 0; //
+    int edgeCount = 0;
     
     for(int i=0; i<sz; i++){
         
