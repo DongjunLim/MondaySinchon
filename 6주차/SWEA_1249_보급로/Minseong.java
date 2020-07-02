@@ -1,24 +1,36 @@
-package Algorithm.MondaySinchon.SWEA7699;
+package Algorithm.MondaySinchon.SWEA1249;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Node {
+
+    int x, y;
+
+    Node(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 
 public class Solution {
 
-    static final int ALPHABET_NUM = 26;
+    static Queue<Node> queue;
 
-    static boolean aVisited[];
-    static boolean visited[][];
-    static char map[][];
+    static int T, N, min;
+    static String s[];
+
     static int dx[] = {1, -1, 0, 0};
     static int dy[] = {0, 0, 1, -1};
 
-    static int T, R, C, count;
-    static String s;
+    static int map[][];
+    static int time[][];
+    static boolean visited[][];
 
     static BufferedReader bufferedReader;
     static BufferedWriter bufferedWriter;
-    static StringTokenizer stringTokenizer;
+
 
     public static void main(String[] args) throws IOException {
 
@@ -28,60 +40,71 @@ public class Solution {
         T = Integer.parseInt(bufferedReader.readLine());
 
         for (int i = 0; i < T; i++) {
+            N = Integer.parseInt(bufferedReader.readLine());
 
-            stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            R = Integer.parseInt(stringTokenizer.nextToken());
-            C = Integer.parseInt(stringTokenizer.nextToken());
+            map = new int[N][N];
+            time = new int[N][N];
+            visited = new boolean[N][N];
 
-            count = 0;
-            map = new char[R][C];
-            visited = new boolean[R][C];
-            aVisited = new boolean[ALPHABET_NUM];
-
-
-            for (int j = 0; j < R; j++) {
-
-                s = bufferedReader.readLine();
-
-                for (int k = 0; k < C; k++) {
-
-                    map[j][k] = s.charAt(k);
-
+            for (int j = 0; j < N; j++) {
+                s = bufferedReader.readLine().split("");
+                for (int k = 0; k < N; k++) {
+                    map[j][k] = Integer.parseInt(s[k]);
                 }
             }
 
-            visited[0][0] = true;
-            aVisited[map[0][0] - 'A'] = true;
-            dfs(0, 0, 1);
-            System.out.println("#" + (i + 1) + " " + count);
-
-        }
-    }
-
-    public static void dfs(int x, int y, int depth) {
-
-        for (int i = 0; i < dx.length; i++) {
-
-            int xx = x + dx[i];
-            int yy = y + dy[i];
-
-            if (xx >= 0 && xx < R && yy >= 0 && yy < C){
-                if (visited[xx][yy]){
-                    continue;
-                }
-                if (!aVisited[map[xx][yy] - 'A']){
-                    visited[xx][yy] = true;
-                    aVisited[map[xx][yy] - 'A'] = true;
-                    dfs(xx, yy, depth + 1);
-                    visited[xx][yy] = false;
-                    aVisited[map[xx][yy] - 'A'] = false;
-
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < N; k++) {
+                    time[j][k] = Integer.MAX_VALUE;
                 }
             }
 
+            time[0][0] = 0;
+
+            bfs(0, 0);
+
+            System.out.println(min);
         }
 
-        count = count < depth ? depth : count;
-
     }
+
+    public static void bfs(int x, int y) {
+        queue = new LinkedList<>();
+
+        queue.offer(new Node(0, 0));
+        visited[x][y] = true;
+
+        while (!queue.isEmpty()) {
+
+            Node node = queue.poll();
+            int a = node.x;
+            int b = node.y;
+
+            if (a == N - 1 && b == N - 1) {
+                min = min > time[N - 1][N - 1] ? time[N - 1][N - 1] : min;
+            }
+
+            if (min <= time[a][b]) {
+                continue;
+            }
+
+            for (int j = 0; j < dx.length; j++) {
+
+                int xx = a + dx[j];
+                int yy = b + dy[j];
+
+                if (xx >= 0 && xx < N && yy >= 0 && yy < N) {
+
+                    if (!visited[xx][yy] || time[xx][yy] > time[a][b] + map[xx][yy]) {
+
+                        visited[xx][yy] = true;
+                        time[xx][yy] = time[x][y] + map[xx][yy];
+
+                        queue.offer(new Node(xx, yy));
+                    }
+                }
+            }
+        }
+    }
+
 }
