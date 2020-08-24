@@ -1,0 +1,25 @@
+2020-07-08 17:40:13,119 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2020-07-08 17:40:13,156 INFO o.a.j.JMeter: Loading user properties from: /usr/local/Cellar/jmeter/5.3/libexec/bin/user.properties
+2020-07-08 17:40:13,157 INFO o.a.j.JMeter: Loading system properties from: /usr/local/Cellar/jmeter/5.3/libexec/bin/system.properties
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: Copyright (c) 1998-2020 The Apache Software Foundation
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: Version 5.3
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: java.version=14.0.1
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: os.name=Mac OS X
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: os.arch=x86_64
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: os.version=10.15.4
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: file.encoding=UTF-8
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: java.awt.headless=null
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: Max memory     =1073741824
+2020-07-08 17:40:13,159 INFO o.a.j.JMeter: Available Processors =12
+2020-07-08 17:40:13,171 INFO o.a.j.JMeter: Default Locale=English (EN)
+2020-07-08 17:40:13,171 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2020-07-08 17:40:13,171 INFO o.a.j.JMeter: JMeterHome=/usr/local/Cellar/jmeter/5.3/libexec
+2020-07-08 17:40:13,171 INFO o.a.j.JMeter: user.dir  =/Users/dongjun/Desktop/MondaySinchon
+2020-07-08 17:40:13,171 INFO o.a.j.JMeter: PWD       =/Users/dongjun/Desktop/MondaySinchon
+2020-07-08 17:40:13,173 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: imdongjun-ui-MacBookPro.local FullName: localhost
+2020-07-08 17:40:13,683 INFO o.a.j.JMeter: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2020-07-08 17:40:15,442 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2020-07-08 17:40:16,478 INFO o.j.r.JARSourceHTTP: Requesting https://jmeter-plugins.org/repo/?installID=mac_os_x-2428ef60116b3e35e882066050a164e8-gui
+2020-07-08 17:40:18,288 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.3, jmeter-core=5.3, jmeter-ftp=5.3, jmeter-http=5.3, jmeter-jdbc=5.3, jmeter-jms=5.3, jmeter-junit=5.3, jmeter-java=5.3, jmeter-ldap=5.3, jmeter-mail=5.3, jmeter-mongodb=5.3, jmeter-native=5.3, jmeter-tcp=5.3, jmeter-components=5.3]
+2020-07-08 17:40:18,289 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
